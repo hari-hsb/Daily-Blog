@@ -1,0 +1,28 @@
+<%-include("header1")-%>
+<div class=" navbar-collapse" id="navbarNav">
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item ">
+      <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/<%=id%>">My Profile <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Contact Us</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">About Us</a>
+    </li>
+
+  </ul>
+</div>
+</nav>
+</div>
+<div class="container1">
+    <form class="inputform" action="/edit" method="post">
+      <h1 ><%=title%></h1>
+      <p ><%=content%></p>
+    
+
+    </form>
+<%-include("footer")-%>

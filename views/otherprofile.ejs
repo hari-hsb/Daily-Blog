@@ -1,0 +1,37 @@
+<%- include('header1') %>
+<div class=" navbar-collapse" id="navbarNav">
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item ">
+      <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/<%=id%>">My Profile <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Contact Us</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">About Us</a>
+    </li>
+
+  </ul>
+</div>
+</nav>
+</div>
+<div class="container1">
+<h1>Welcome to <%=name%>'s profile</h1>
+<h1>hello</h1>
+<p>Say Something</p>
+<%  for(var i=0;i<stories.length;i++){%>
+  <h2><%=stories[i].title%></h2>
+  <p><%=stories[i].content.substring(0,100)%>.....<a href="/posts/auth/<%=stories[i].title%>">read more </a></p>
+<% }%>
+
+<!-- <form class="" action="/compose" method="get">
+  <button type="submit" class="btn btn-primary">Compose</button>
+</form> -->
+
+
+
+
+<%- include('footer') %>

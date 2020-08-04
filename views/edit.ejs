@@ -1,0 +1,35 @@
+<%-include("header1")-%>
+<div class=" navbar-collapse" id="navbarNav">
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item ">
+      <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/<%=id%>">My Profile <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Contact Us</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">About Us</a>
+    </li>
+
+  </ul>
+</div>
+</nav>
+</div>
+<div class="container1">
+    <h1>Edit</h1>
+    <form name="" action="/" method="post">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" name="title" class="form-control" id="title"  value="<%=title%>">
+
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Your Content</label>
+    <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="15" ><%=content%></textarea>
+  </div>
+  <button name="id" value="<%=id%>" type="submit" class="btn btn-primary">Save</button>
+</form>
+<%-include("footer")-%>

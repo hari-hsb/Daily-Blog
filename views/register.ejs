@@ -1,0 +1,27 @@
+<%- include('header') %>
+<div class="text-center">
+    <i class="fas fa-key fa-6x"></i>
+  <form class="form-signin" method="post" action="/register">
+   <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+   <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+
+   <label for="inputEmail" class="sr-only">Email address</label>
+   <input name="username" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+   <input name="firstname" type="text" id="firstname" class="form-control" placeholder="First Name" required >
+  <input name="lastname" type="text" id="lastname" class="form-control" placeholder="Last Name" required>
+   <label for="inputPassword" class="sr-only">Password</label>
+   <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+   <label for="inputPassword" class="sr-only">Password</label>
+
+
+
+   <div class="checkbox mb-3">
+
+   </div>
+   <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+   <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+  </form>
+</div>
+
+
+<%- include('footer') %>

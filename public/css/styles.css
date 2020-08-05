@@ -122,3 +122,12 @@ body{
   margin:30px auto;
   padding: 30px 30px;
 }
+.content{
+  text-align: justify;
+  display: block;
+
+}
+.title{
+  text-decoration: underline;
+
+}

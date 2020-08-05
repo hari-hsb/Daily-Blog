@@ -27,7 +27,7 @@
 <%  for(var i=0;i<stories.length;i++){%>
 <div class="posts">
 
-    <h2><%=stories[i].title%></h2>
+    <h2 class="title"><%=stories[i].title%></h2>
 
     <p><%=stories[i].content.substring(0,600)%>.....<a href="/<%=id%>/<%=stories[i]._id%>">read more </a></p>
   <% }%>
@@ -37,7 +37,7 @@
 <!-- <form class="" action="/compose" method="get">
   <button type="submit" class="btn btn-primary">Compose</button>
 </form> -->
-<a href="/compose"><button type="button" class="btn btn-primary" name="button">Edit</button></a>
+<a href="/compose"><button type="button" class="btn btn-primary" name="button">Compose</button></a>
 
 
 

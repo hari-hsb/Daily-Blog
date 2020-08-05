@@ -7,6 +7,9 @@
     <li class="nav-item ">
       <a class="nav-link" href="/<%=id%>">My Profile <span class="sr-only">(current)</span></a>
     </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/logout">Log Out <span class="sr-only">(current)</span></a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Contact Us</a>
     </li>
@@ -23,9 +26,13 @@
 <h1>hello</h1>
 <p>Say Something</p>
 <%  for(var i=0;i<stories.length;i++){%>
-  <h2><%=stories[i].title%></h2>
-  <p><%=stories[i].content.substring(0,100)%>.....<a href="/posts/auth/<%=stories[i].title%>">read more </a></p>
-<% }%>
+<div class="posts">
+
+    <h2><%=stories[i].title%></h2>
+
+    <p><%=stories[i].content.substring(0,600)%>.....<a href="/<%=id%>/<%=stories[i]._id%>">read more </a></p>
+  <% }%>
+</div>
 
 <!-- <form class="" action="/compose" method="get">
   <button type="submit" class="btn btn-primary">Compose</button>

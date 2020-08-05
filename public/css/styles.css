@@ -11,6 +11,13 @@ body{
   text-align: center;
 }
 
+.invi{
+  visibility: hidden;
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: black;
+}
 .jumbotron{
   padding-top: 10%;
 
@@ -47,7 +54,7 @@ body{
   padding-right: 15%;
 }
 .navbar-brand{
-  letter-spacing: 5px;
+  letter-spacing: 3px;
   padding-left: 15%;
 }
 
@@ -109,4 +116,9 @@ body{
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+.posts{
+  background-color: #e6e6e6;
+  margin:30px auto;
+  padding: 30px 30px;
 }

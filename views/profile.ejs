@@ -7,6 +7,9 @@
     <li class="nav-item ">
       <a class="nav-link" href="/<%=id%>">My Profile <span class="sr-only">(current)</span></a>
     </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/logout">Log Out <span class="sr-only">(current)</span></a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Contact Us</a>
     </li>
@@ -19,19 +22,22 @@
 </nav>
 </div>
 <div class="container1">
-<h1>Welcome</h1>
-<h1>This is my profile</h1>
-<p>Say Something</p>
+<h1>Welcome To Your Profile</h1>
+<h4><%=name%>  <%=name2%></h4>
 <%  for(var i=0;i<stories.length;i++){%>
-  <h2><%=stories[i].title%></h2>
-  <h2>/posts/<%=id%>/<%=stories[i]._id%></h2>
-  <p><%=stories[i].content.substring(0,100)%>.....<a href="/<%=id%>/<%=stories[i]._id%>">read more </a></p>
-<% }%>
+<div class="posts">
+
+    <h2><%=stories[i].title%></h2>
+
+    <p><%=stories[i].content.substring(0,600)%>.....<a href="/<%=id%>/<%=stories[i]._id%>">read more </a></p>
+  <% }%>
+</div>
+
 
 <!-- <form class="" action="/compose" method="get">
   <button type="submit" class="btn btn-primary">Compose</button>
 </form> -->
-<a href="/compose"><button type="button" class="btn btn-primary" name="button">compose</button></a>
+<a href="/compose"><button type="button" class="btn btn-primary" name="button">Edit</button></a>
 
 
 

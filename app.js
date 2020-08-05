@@ -54,24 +54,49 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-let id;
+let id=null;
 
 app.get("/",(req,res)=>
 {
-  res.render("home");
+  if(req.isAuthenticated())
+  {
+
+    res.render("indexx",{vis:"visi",id:id});
+  }
+  else{
+
+    res.render("indexx",{vis:"invi",id:id});
+  }
+
 });
 app.get("/login",(req,res)=>
 {
-  res.render("login");
+  if(!req.isAuthenticated())
+  {
+    res.render("login");
+  }
+  else{
+    res.redirect("/");
+  }
 });
 app.get("/register",(req,res)=>
 {
-  res.render("register");
+  if(!req.isAuthenticated())
+  {
+    res.render("register");
+  }
+  else{
+    res.redirect("/");
+  }
 });
 
-
+app.get("/logout",(req,res)=>
+{
+  req.logout();
+  res.redirect("/");
+})
 app.get("/compose",(req,res)=>{
-  console.log("get compose");
+
   if(req.isAuthenticated())
   {
     res.render("compose",{"id":id});
@@ -85,7 +110,7 @@ app.get("/home",(req,res)=>
 {
   if(req.isAuthenticated())
   {
-    res.render("index",{id:id});
+    res.render("home",{id:id});
   }
   else{
     res.redirect("/");
@@ -104,7 +129,7 @@ app.post("/compose",(req,res)=>
   {
     if(found)
     {
-      console.log(found.username);
+
 
       const story=new Story({
         title:title,
@@ -119,12 +144,40 @@ app.post("/compose",(req,res)=>
 });
 
 });
+app.post("/:id/:storyid",(req,res)=>{
+
+var url="/"+req.params.id+"/"+req.params.storyid;
+  if(req.isAuthenticated())
+  {
+    if(id===req.params.id)
+    {
+      User.updateOne({"username":id,"stories._id":req.params.storyid},
+      {$set:{"stories.$.title":req.body.title,"stories.$.content":req.body.content}},
+    function(err)
+  {
+    if(!err)
+    {
+      res.redirect(url);
+    }
+    else{
+      console.log(err);
+    }
+  });
+    }
+    else{
+      res.send("invald URL");
+    }
+  }
+  else{
+    res.redirect("/");
+  }
+
+});
 app.get("/:id/:storyid",(req,res)=>{
 
   if(req.isAuthenticated())
   {
-    console.log(req.params);
-    console.log(req.params.id);
+
     User.findOne({username:req.params.id},(err,result)=>{
       if(!err)
       {
@@ -136,7 +189,7 @@ app.get("/:id/:storyid",(req,res)=>{
             {
               if(id===req.params.id)
               {
-                res.render("profilepost",{id:id,title:story.title,content:story.content});
+                res.render("profilepost",{storyid:req.params.storyid,id:id,title:story.title,content:story.content});
               }
               else{
                 res.render("otherspost",{id:id,title:story.title,content:story.content});
@@ -156,9 +209,46 @@ app.get("/:id/:storyid",(req,res)=>{
   }
 
 });
+app.get("/:id/:storyid/edit",(req,res)=>{
+
+  if(req.isAuthenticated())
+  {
+
+    User.findOne({username:req.params.id},(err,result)=>{
+      if(!err)
+      {
+        if(result)
+        {
+          result.stories.forEach(story=>
+          {
+            if(story.id===req.params.storyid)
+            {
+              if(id===req.params.id)
+              {
+                res.render("edit",{id:id,title:story.title,content:story.content,storyid:story._id});
+              }
+              else{
+                res.send("Invalid Url");
+              }
+            }
+          });
+
+        }
+        else{
+          res.send(" no user present with given username")
+        }
+      }
+    });
+  }
+  else{
+    res.redirect("/");
+  }
+
+});
+
 app.get("/:id",(req,res)=>
 {
-console.log(req.params.id);
+
   if(req.isAuthenticated())
   {
 
@@ -170,11 +260,11 @@ console.log(req.params.id);
          {
            if(id===req.params.id)
            {
-             console.log("self profile");
-              res.render("profile",{stories:result.stories,id:id});
+
+              res.render("profile",{stories:result.stories,id:id,name:result.firstname,name2:result.lastname});
             }
            else{
-             console.log("other profile");
+
                res.render("otherprofile",{id:id,name:result.firstname,stories:result.stories});
            }
          }
@@ -210,7 +300,7 @@ req.login(user,function(err){
     });
   }
   else{
-    console.log("ERror:" ,err);
+    console.log("Error:" ,err);
     res.redirect("/register");
   }
 });
@@ -223,7 +313,7 @@ app.post("/register",(req,res)=>
     firstname:req.body.firstname,
     lastname:req.body.lastname
   });
-  console.log(newUser);
+
   User.register(newUser,req.body.password,(err,user)=>{
     if(!err)
     {
